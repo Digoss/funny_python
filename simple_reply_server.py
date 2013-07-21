@@ -43,12 +43,15 @@ def clienthandler(conn):
 		conn.sendall(reply)
 	conn.close()
 
-def main():
-
+def argparsefunction():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-p", "--port", help="specify the port to connect", type=int, required=True)
 	parser.add_argument("-H", "--host", help="specify the host to connect", default="")
-	args = parser.parse_args()
+
+def main():
+
+	
+	args = argparsefunction()
 
 	init_server(args.host, args.port)
 

@@ -43,12 +43,15 @@ def init_client(host, port):
 
 	print "Socket closed"
 
-def main():
-
+def argparsefunction():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-p", "--port", help="specify the port to connect", type=int, required=True)
 	parser.add_argument("-H", "--host", help="specify the host to connect", required=True)
-	args = parser.parse_args()
+	return parser.parse_args()
+
+def main():
+
+	args = argparsefunction()
 
 	init_client(args.host, args.port)
 
