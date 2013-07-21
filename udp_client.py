@@ -1,6 +1,7 @@
 import sys
 import socket
 import argparse
+from parse_arguments import argParseFunction
 
 def createSocket(host, port):
 	try:
@@ -19,14 +20,6 @@ def createSocket(host, port):
 		except socket.error, msg:
 			print "Error code: "+str(msg[0])+". Message "+msg[1]
 			sys.exit()
-
-
-
-def argParseFunction():
-	parser = argparse.ArgumentParser()
-	parser.add_argument("-p", "--port", help="specify the port to connect", type=int, required=True)
-	parser.add_argument("-H", "--host", help="specify the host to connect", default="")
-	return parser.parse_args()
 
 def main():
 
