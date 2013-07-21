@@ -1,5 +1,5 @@
-funny_python
+Funny Python
 ============
 
 
-my python exercises
+My python exercises
