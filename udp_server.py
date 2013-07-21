@@ -33,7 +33,7 @@ def createSocket(host, port):
 	s.close()
 
 
-def argparsefunction():
+def argParseFunction():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-p", "--port", help="specify the port to connect", type=int, required=True)
 	parser.add_argument("-H", "--host", help="specify the host to connect", default="")
@@ -41,7 +41,7 @@ def argparsefunction():
 
 def main():
 
-	args = argparsefunction()
+	args = argParseFunction()
 	try:
 		createSocket(args.host, args.port)
 	except KeyboardInterrupt:

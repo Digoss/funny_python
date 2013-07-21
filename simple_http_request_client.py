@@ -5,7 +5,7 @@ import sys
 import argparse
 import time
 
-def init_client(host, port):
+def initClient(host, port):
 
 	try:
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -43,7 +43,7 @@ def init_client(host, port):
 
 	print "Socket closed"
 
-def argparsefunction():
+def argParseFunction():
 	parser = argparse.ArgumentParser()
 	parser.add_argument("-p", "--port", help="specify the port to connect", type=int, required=True)
 	parser.add_argument("-H", "--host", help="specify the host to connect", required=True)
@@ -51,9 +51,9 @@ def argparsefunction():
 
 def main():
 
-	args = argparsefunction()
+	args = argParseFunction()
 
-	init_client(args.host, args.port)
+	initClient(args.host, args.port)
 
 if __name__ == "__main__":
 	main()
