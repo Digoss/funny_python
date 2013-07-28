@@ -31,6 +31,10 @@
 	SUCH DAMAGE.
 """
 
+"""
+	Python Version
+"""
+
 def checksum(msg):
     _sum = 0
     for i in range(0, len(msg), 2):
@@ -40,7 +44,6 @@ def checksum(msg):
     _sum = (_sum>>16) + (_sum & 0xffff);
     _sum = _sum + (_sum >> 16);
      
-    #complement and mask to 4 byte short
     answer = ~_sum & 0xffff
      
     return answer
