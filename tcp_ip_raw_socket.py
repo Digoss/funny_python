@@ -96,10 +96,8 @@ def createSocket():
 
 def main():
 
-	#args = argParseFunction()
-
 	fd = createSocket()
-	packet = buildPacket("10.1.1.2", "10.1.1.1", 54321, 80, "Hello, how are you")
+	packet = buildPacket("10.1.1.2", "10.1.1.1", 54321, 80, "Hello, how are youaaa")
 	for i in range(5):
 		sendPacket(fd, packet, "10.1.1.2")
 

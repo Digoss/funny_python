@@ -37,12 +37,22 @@
 
 def checksum(msg):
     _sum = 0
-    for i in range(0, len(msg), 2):
+    even_number = True
+    _length = len(msg)
+
+    if len(msg) % 2 != 0:
+    	_length = _length - 1
+    	even_number = False
+
+    for i in range(0, _length, 2):
         w = ord(msg[i]) + (ord(msg[i+1]) << 8 )
         _sum = _sum + w
+
+    if not even_number:
+    	_sum = _sum + ord(msg[_length])
      
-    _sum = (_sum>>16) + (_sum & 0xffff);
-    _sum = _sum + (_sum >> 16);
+    _sum = (_sum>>16) + (_sum & 0xffff)
+    _sum = _sum + (_sum >> 16)
      
     answer = ~_sum & 0xffff
      
