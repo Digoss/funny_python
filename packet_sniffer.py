@@ -9,7 +9,7 @@ def createSocket():
 		print "Socket create. Error: %d, Message %d" % (str(msg[0]), msg[1])
 	return fd
 
-def unpackIPHeader(pkt):
+def parseIPHeader(pkt):
 	ip_packet = unpack("!BBHHHBBH4s4s", pkt)
 	version_ihl = ip_packet[0]
 	version = (version_ihl >> 4)
@@ -22,7 +22,7 @@ def unpackIPHeader(pkt):
 	print 'Version : ' + str(version) + ' IP Header Length : ' + str(ihl) + ' TTL : ' + str(ttl) + ' Protocol : ' + str(protocol) + ' Source Address : ' + str(s_addr) + ' Destination Address : ' + str(d_addr)
 	return iph_length
 
-def unpackTCPHeader(pkt):
+def parseTCPHeader(pkt):
 	tcp_packet = unpack("!HHLLBBHHH", pkt)
 	s_port = tcp_packet[0]
 	d_port = tcp_packet[1]
@@ -31,6 +31,10 @@ def unpackTCPHeader(pkt):
 	doff_reserved = tcp_packet[4]
 	tcp_length = doff_reserved >> 4
 	print 'Source Port : ' + str(s_port) + ' Dest Port : ' + str(d_port) + ' Sequence Number : ' + str(seq) + ' Acknowledgement : ' + str(ack) + ' TCP header length : ' + str(tcp_length)
+	return tcp_length
+
+def parseData(pkt):
+	print "Data: " + pkt
 
 
 def initSniffer():
@@ -40,9 +44,12 @@ def initSniffer():
 			packet = sock.recvfrom(65565)
 			packet = packet[0]
 			ip_header = packet[0:20]
-			ip_size = unpackIPHeader(ip_header)
+			ip_size = parseIPHeader(ip_header)
 			tcp_header = packet[ip_size:ip_size+20]
-			unpackTCPHeader(tcp_header)
+			tcp_size = parseTCPHeader(tcp_header)
+			header_size = ip_size + tcp_size * 4
+			data_size = len(packet) - header_size
+			parseData(packet[data_size:])
 
 	except KeyboardInterrupt:
 		print "Closing"
