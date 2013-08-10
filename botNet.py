@@ -34,6 +34,7 @@ def addClient(host, user, password):
     botNet.append(client)
 
 botNet = []
+
 addClient('ip', 'user', 'password')
 
 try:

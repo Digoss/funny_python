@@ -1,16 +1,5 @@
 from scapy.all import *
 
-# def pktPrint(pkt):
-# 	if pkt.haslayer(TCP):
-# 		print '[+] Detected a TCP Packet'
-# 	if pkt.haslayer(Raw):
-# 		pass
-# 		#payload = pkt.getlayer(Raw).load
-
-# sniff(iface='mon0', prn=pktPrint)
-
-# ap_list = []
- 
 def PacketHandler(pkt) :
  
   if pkt.haslayer(Dot11) :
